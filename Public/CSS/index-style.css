@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Dosis', sans-serif;
+    height: 100%;
+    line-height: 1.6;
+    color: #666;
+}
+
+body {
+  background-image: url("/cdn/Images/main-background.jpg");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-header {
+    text-align: center;
+    flex: auto;
+}
+.account-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.account-button {
+    text-align: center;
+    flex-basis: 15rem;
+    padding: 1.5rem 2.5rem;
+    background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+    font-size: 1.5rem;
+    color: #ffff;
+    border: none;
+    margin: 1rem;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    padding: 1.5rem 1.5rem;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #f6f6f646;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 1.2rem;
+    width: 80%; 
+}
+
+.modal-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+.submit-button {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    border-radius: 1.2rem;
+    border: none;
+    color: #ffff;
+    margin-right: 1rem;
+    padding: 1.2rem;
+    transition: all .3s ease-in-out;
+}
+
+.cancel-button {
+    background-image: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+    border-radius: 1.2rem;
+    border: none;
+    color: #ffff;
+    margin-right: 1rem;
+    padding: 1.2rem;
+    transition: all .3s ease-in-out;
+}
+
+label {
+    font-weight: 800;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 1rem;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 1.2rem;
+    background: #f1f1f1;
+    transition: background-color .3s ease-in-out;
+    -webkit-transition: background-color .3s ease-in-out;
+    -moz-transition: background-color .3s ease-in-out;
+    -o-transition: background-color .3s ease-in-out;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+input[type=text]:hover, input[type=password]:hover {
+    background-color: #cecece;
+}
+
+button:hover {
+    box-shadow: 4px 16px 90px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -5px, 0); 
+    -webkit-transform: translate3D(0, -5px, 0);
+    -moz-transform: translate3D(0, -5px, 0);
+    -o-transform: translate3D(0, -5px, 0);
+}

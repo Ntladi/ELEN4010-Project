@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BillSplitter Home</title>
+    <title>BillSplitter Login</title>
     <meta charset="utf-8" />
-    <script type="module" src="/cdn/Scripts/index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/cdn/CSS/index-style.css">
+    <script type="module" src="/cdn/Scripts/index-script.js"></script>
 </head>
 <body>
-    <h1>Welcome to BillSplitter</h1>
-    <button onclick="document.getElementById('sign-up-box').style.display='block'" style="width:auto;">Sign Up</button>
-    <button onclick="document.getElementById('login-box').style.display='block'" style="width:auto;">Login</button>
+    <h1 class="main-header">BillSplitter</h1>
+    <div class="account-button-container">
+        <button class="account-button" id="sign-up-button">Sign Up</button>
+        <button class="account-button" id="login-button">Login</button>
+    </div>
     <div id="sign-up-box" class="modal"></div>
     <div id="login-box" class="modal"></div>
 </body>
