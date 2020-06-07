@@ -89,6 +89,16 @@ body {
     padding: 1.2rem;
     transition: all .3s ease-in-out;
 }
+.email-button {
+    background-image: linear-gradient(120deg, #9B6B8D 0%, #fecfef 100%);
+    border-radius: 1.2rem;
+    border: none;
+    color: #ffff;
+    margin-right: 1rem;
+    padding: 1.2rem;
+    transition: all .3s ease-in-out;
+}
+
 
 label {
     font-weight: 800;
