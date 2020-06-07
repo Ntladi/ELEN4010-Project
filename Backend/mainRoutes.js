@@ -16,4 +16,8 @@ mainRouter.post('/create-user', function (req, res) { // will handle the user cr
   console.log(req.body)
   res.send('User created')
 })
+mainRouter.post('/logged-in', function (req, res) { // will handle the user login process
+  console.log(req.body)
+  res.send('Logged in')
+})
 module.exports = mainRouter
