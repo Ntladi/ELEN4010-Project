@@ -29,11 +29,11 @@ const signUpForm = function () {
   const cancelButton = document.createElement('button')
 
   // initialise all fields
-  const nameField = newInputField('sign-up-name', 'Enter Name', 'Name', true)
-  const surnameField = newInputField('sign-up-surname', 'Enter Surname', 'Surname', true)
-  const usernameField = newInputField('sign-up-username', 'Enter Username', 'Username', true)
-  const emailField = newInputField('sign-up-email', 'Enter Email', 'Email', true)
-  const passField = newInputField('sign-up-password', 'Enter Password', 'Password', true)
+  const nameField = newInputField('signUpName', 'Enter Name', 'Name', true)
+  const surnameField = newInputField('signUpSurname', 'Enter Surname', 'Surname', true)
+  const usernameField = newInputField('signUpUsername', 'Enter Username', 'Username', true)
+  const emailField = newInputField('signUpEmail', 'Enter Email', 'Email', true)
+  const passField = newInputField('signUpPassword', 'Enter Password', 'Password', true)
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
@@ -94,8 +94,8 @@ const LogInForm = function(){
 
   // initialise the username and password field
 
-  const usernameField = newInputField('login-username', 'Enter Username', 'Username', true)
-  const passField = newInputField('login-username-password', 'Enter Password', 'Password', true)
+  const usernameField = newInputField('loginUsername', 'Enter Username', 'Username', true)
+  const passField = newInputField('loginUsernamePassword', 'Enter Password', 'Password', true)
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
@@ -108,7 +108,7 @@ const LogInForm = function(){
   buttons.classList = 'modal-buttons'
 
   // set heading attributes
-  heading.textContent = 'LogIn'
+  heading.textContent = 'Login'
 
   // set button attributes
   submitButton.textContent = 'Login'
@@ -153,11 +153,10 @@ const LogWithEmail = function(){
   const buttons = document.createElement('div')
   const submitButton = document.createElement('button')
   const cancelButton = document.createElement('button')
-  const emailButtun = document.createElement('button')
   
   //initialise the field for email and password
-  const emailField = newInputField('login-email', 'Enter Email', 'Email', true)
-  const passField = newInputField('login-email-password', 'Enter Password', 'Password', true)
+  const emailField = newInputField('loginEmail', 'Enter Email', 'Email', true)
+  const passField = newInputField('loginEmailPassword', 'Enter Password', 'Password', true)
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
@@ -202,7 +201,6 @@ const LogWithEmail = function(){
 const signUpBox = document.querySelector('#sign-up-box')
 const signUpButton = document.querySelector('#sign-up-button')
 signUpBox.appendChild(signUpForm())
-const cancelButton = document.querySelector('.cancel-button')
 
 const LogInBox = document.querySelector('#login-box')
 const LogInButton = document.querySelector('#login-button')
