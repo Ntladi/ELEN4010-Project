@@ -81,7 +81,7 @@ const signUpForm = function () {
 
   return form
 }
-const LogInForm = function(){
+const LogInForm = function () {
   // initialise DOM attributes for the login form
   const form = document.createElement('form')
   const container = document.createElement('div')
@@ -115,7 +115,7 @@ const LogInForm = function(){
   emailButtun.textContent = 'Login With Email'
   cancelButton.textContent = 'Cancel'
   submitButton.setAttribute('type', 'submit')
-  emailButtun.setAttribute('type','button')
+  emailButtun.setAttribute('type', 'button')
   cancelButton.setAttribute('type', 'button')
   cancelButton.setAttribute('id', 'logIn-cancel-button')
   submitButton.classList = 'submit-button'
@@ -126,7 +126,6 @@ const LogInForm = function(){
   buttons.appendChild(submitButton)
   buttons.appendChild(emailButtun)
   buttons.appendChild(cancelButton)
- 
 
   // append DOM attributes to container
   container.appendChild(heading)
@@ -141,10 +140,9 @@ const LogInForm = function(){
   form.appendChild(container)
 
   return form
-
 }
 
-const LogWithEmail = function(){
+const LogWithEmail = function () {
   // initialise DOM attributes for the login email form
   const form = document.createElement('form')
   const container = document.createElement('div')
@@ -153,8 +151,8 @@ const LogWithEmail = function(){
   const buttons = document.createElement('div')
   const submitButton = document.createElement('button')
   const cancelButton = document.createElement('button')
-  
-  //initialise the field for email and password
+
+  // initialise the field for email and password
   const emailField = newInputField('loginEmail', 'Enter Email', 'Email', true)
   const passField = newInputField('loginEmailPassword', 'Enter Password', 'Password', true)
   passField[0].setAttribute('type', 'password')
@@ -190,13 +188,12 @@ const LogWithEmail = function(){
   container.appendChild(passField[1])
   container.appendChild(passField[0])
   container.appendChild(buttons)
-    
+
   // append container to form
   form.appendChild(container)
 
   return form
 }
-
 
 const signUpBox = document.querySelector('#sign-up-box')
 const signUpButton = document.querySelector('#sign-up-button')
@@ -215,23 +212,22 @@ const logInCancelButton = document.querySelector('#logIn-cancel-button')
 const emailCancelButton = document.querySelector('#email-cancel-button')
 
 window.onclick = function (event) {
-  if (event.target === signUpBox ||  event.target === signUpCancelButton) {
+  if (event.target === signUpBox || event.target === signUpCancelButton) {
     signUpBox.style.display = 'none'
   }
-  if (event.target === LogInBox ||  event.target === logInCancelButton) {
+  if (event.target === LogInBox || event.target === logInCancelButton) {
     LogInBox.style.display = 'none'
   }
-  if (event.target === EmailBox ||  event.target === emailCancelButton) {
+  if (event.target === EmailBox || event.target === emailCancelButton) {
     EmailBox.style.display = 'none'
-  }  
+  }
   if (event.target === signUpButton) {
     signUpBox.style.display = 'block'
   }
-  if (event.target === LogInButton ) {
+  if (event.target === LogInButton) {
     LogInBox.style.display = 'block'
-  } 
-  if(event.target === EmailButton){
+  }
+  if (event.target === EmailButton) {
     EmailBox.style.display = 'block'
   }
-  
 }
