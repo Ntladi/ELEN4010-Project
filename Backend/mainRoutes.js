@@ -14,12 +14,11 @@ mainRouter.get('/home', function (req, res) { // the main home page once signed 
 })
 
 mainRouter.post('/create-user', function (req, res) { // will handle the user creation process
-
-  if(!accountProcess.isUsernameValid(req.body.signUpUsername)){res.send('Invalid username.'); return}
-  if(!accountProcess.isEmailValid(req.body.signUpEmail)){res.send('Invalid email address.'); return}
-  if(!accountProcess.isPasswordValid(req.body.signUpUsername, req.body.signUpPassword)){res.send('Invalid password.'); return}
-  if(!accountProcess.isUsernameUnique(req.body.signUpUsername)){res.send('Username is not unique'); return}
-  if(!accountProcess.isEmailUnique(req.body.signUpEmail)){res.send('Email address is not unique'); return}  
+  if (!accountProcess.isUsernameValid(req.body.signUpUsername)) { res.send('Invalid username.'); return }
+  if (!accountProcess.isEmailValid(req.body.signUpEmail)) { res.send('Invalid email address.'); return }
+  if (!accountProcess.isPasswordValid(req.body.signUpUsername, req.body.signUpPassword)) { res.send('Invalid password.'); return }
+  if (!accountProcess.isUsernameUnique(req.body.signUpUsername)) { res.send('Username is not unique'); return }
+  if (!accountProcess.isEmailUnique(req.body.signUpEmail)) { res.send('Email address is not unique'); return }
 
   accountProcess.addUser(accountProcess.createUser(req.body))
   res.send('User created.')
