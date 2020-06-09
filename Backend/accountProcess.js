@@ -66,5 +66,19 @@ module.exports = {
 
   clearList: function () {
     userList = []
+  },
+
+  userNameExists: function (username) {
+    const index = userList.findIndex((user) => {
+      return user.username === username
+    })
+    return index
+  },
+
+  emailExists: function (email) {
+    const index = userList.findIndex((user) => {
+      return user.email === email
+    })
+    return index
   }
 }

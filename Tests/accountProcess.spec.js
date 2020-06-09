@@ -94,3 +94,86 @@ describe('Tests for adding users to the private user list', () => {
     expect(retrievedObj.password).toEqual(userObj1.signUpPassword)
   })
 })
+
+describe('Tests for user login', () => {
+  test('An empty list returns an invalid user', () => {
+    accountProcess.clearList()
+    const usernameIndex = accountProcess.userNameExists('Learn')
+    const emailIndex = accountProcess.emailExists('leago89@gmail.com')
+    expect(emailIndex).toEqual(-1)
+    expect(usernameIndex).toEqual(-1)
+  })
+
+  test('The index of a valid user is returned from a populated list', () => {
+    accountProcess.clearList()
+    const userObj0 = {
+      signUpName: 'Gerald',
+      signUpSurname: 'Kirui',
+      signUpUsername: 'GeriKirui',
+      signUpEmail: 'geraldkirui8@gmail.com',
+      signUpPassword: 'helloWorld'
+    }
+    const userObj1 = {
+      signUpName: 'Learn',
+      signUpSurname: 'Chiloane',
+      signUpUsername: 'Chiloanel',
+      signUpEmail: 'leago89@gmail.com',
+      signUpPassword: 'hiPassword'
+    }
+    accountProcess.addUser(accountProcess.createUser(userObj0))
+    accountProcess.addUser(accountProcess.createUser(userObj1))
+    const usernameIndex0 = accountProcess.userNameExists('GeriKirui')
+    const usernameIndex1 = accountProcess.userNameExists('Chiloanel')
+    expect(usernameIndex0).toEqual(0)
+    expect(usernameIndex1).toEqual(1)
+    const emailIndex0 = accountProcess.emailExists('geraldkirui8@gmail.com')
+    const emailIndex1 = accountProcess.emailExists('leago89@gmail.com')
+    expect(emailIndex0).toEqual(0)
+    expect(emailIndex1).toEqual(1)
+  })
+
+  test('The list of an invalid user is not returned from a populated list', () => {
+    accountProcess.clearList()
+    const userObj0 = {
+      signUpName: 'Gerald',
+      signUpSurname: 'Kirui',
+      signUpUsername: 'GeriKirui',
+      signUpEmail: 'geraldkirui8@gmail.com',
+      signUpPassword: 'helloWorld'
+    }
+    const userObj1 = {
+      signUpName: 'Learn',
+      signUpSurname: 'Chiloane',
+      signUpUsername: 'Chiloanel',
+      signUpEmail: 'leago89@gmail.com',
+      signUpPassword: 'hiPassword'
+    }
+    accountProcess.addUser(accountProcess.createUser(userObj0))
+    accountProcess.addUser(accountProcess.createUser(userObj1))
+    const usernameIndex = accountProcess.userNameExists('WrongPerson')
+    const emailIndex = accountProcess.userNameExists('wrongPerson@email.com')
+    expect(usernameIndex).toEqual(-1)
+    expect(emailIndex).toEqual(-1)
+  })
+
+  test('Querying for a user does not alter the list', () => {
+    accountProcess.clearList()
+    let usernameIndex = accountProcess.userNameExists('GeriKirui')
+    let emailIndex = accountProcess.emailExists('leago89@gmail.com')
+    expect(usernameIndex).toEqual(-1)
+    expect(emailIndex).toEqual(-1)
+    expect(accountProcess.getList()).toEqual([])
+    const userObj = {
+      signUpName: 'Learn',
+      signUpSurname: 'Chiloane',
+      signUpUsername: 'Chiloanel',
+      signUpEmail: 'leago89@gmail.com',
+      signUpPassword: 'hiPassword'
+    }
+    accountProcess.addUser(accountProcess.createUser(userObj))
+    usernameIndex = accountProcess.userNameExists('Chiloanel')
+    emailIndex = accountProcess.emailExists('leago89@gmail.com')
+    expect(usernameIndex).toEqual(0)
+    expect(emailIndex).toEqual(0)
+  })
+})
