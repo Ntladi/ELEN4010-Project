@@ -48,7 +48,7 @@ module.exports = {
       firstName: info.signUpName,
       lastName: info.signUpSurname,
       username: info.signUpUsername,
-      email: info.signUpEmail,
+      email: String((info.signUpEmail)).toLowerCase(),
       password: info.signUpPassword
     }
 

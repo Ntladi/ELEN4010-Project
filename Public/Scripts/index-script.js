@@ -42,7 +42,7 @@ const signUpForm = function () {
   form.method = 'post'
 
   // set container attributes
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
   // set heading attributes
@@ -104,7 +104,7 @@ const usernameLoginForm = function () {
   form.method = 'post'
 
   // set container attributes
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
   // set heading attributes
@@ -164,7 +164,7 @@ const emailLoginForm = function () {
   form.action = '/logged-in'
   form.method = 'post'
 
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
   heading.textContent = 'Login'
