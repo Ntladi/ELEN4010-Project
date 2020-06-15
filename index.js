@@ -6,6 +6,10 @@ const app = express()
 const bodyParser = require('body-parser') // load the body parser
 const mainRouter = require('./Backend/mainRoutes.js') // load the main router
 
+// tell express to use ejs as the view engine
+app.set('view engine', 'ejs')
+app.set('views', './Views')
+
 // tell Express to use bodyParser for JSON and URL encoded form bodies
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

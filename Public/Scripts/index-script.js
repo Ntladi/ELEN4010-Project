@@ -42,7 +42,7 @@ const signUpForm = function () {
   form.method = 'post'
 
   // set container attributes
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
   // set heading attributes
@@ -53,7 +53,7 @@ const signUpForm = function () {
   cancelButton.textContent = 'Cancel'
   submitButton.setAttribute('type', 'submit')
   cancelButton.setAttribute('type', 'button')
-  cancelButton.setAttribute('id', 'signUp-cancel-button')
+  cancelButton.setAttribute('id', 'sign-up-cancel-button')
   submitButton.classList = 'submit-button'
   cancelButton.classList = 'cancel-button'
 
@@ -81,7 +81,7 @@ const signUpForm = function () {
 
   return form
 }
-const LogInForm = function () {
+const usernameLoginForm = function () {
   // initialise DOM attributes for the login form
   const form = document.createElement('form')
   const container = document.createElement('div')
@@ -90,7 +90,7 @@ const LogInForm = function () {
   const buttons = document.createElement('div')
   const submitButton = document.createElement('button')
   const cancelButton = document.createElement('button')
-  const emailButtun = document.createElement('button')
+  const emailButton = document.createElement('button')
 
   // initialise the username and password field
 
@@ -104,7 +104,7 @@ const LogInForm = function () {
   form.method = 'post'
 
   // set container attributes
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
   // set heading attributes
@@ -112,19 +112,20 @@ const LogInForm = function () {
 
   // set button attributes
   submitButton.textContent = 'Login'
-  emailButtun.textContent = 'Login With Email'
+  emailButton.textContent = 'Login With Email'
   cancelButton.textContent = 'Cancel'
   submitButton.setAttribute('type', 'submit')
-  emailButtun.setAttribute('type', 'button')
+  emailButton.setAttribute('type', 'button')
+  emailButton.setAttribute('id', 'login-email-button')
   cancelButton.setAttribute('type', 'button')
-  cancelButton.setAttribute('id', 'logIn-cancel-button')
+  cancelButton.setAttribute('id', 'username-cancel-button')
   submitButton.classList = 'submit-button'
-  emailButtun.classList = 'email-button'
+  emailButton.classList = 'login-choice-button'
   cancelButton.classList = 'cancel-button'
 
   // append buttons to their container
   buttons.appendChild(submitButton)
-  buttons.appendChild(emailButtun)
+  buttons.appendChild(emailButton)
   buttons.appendChild(cancelButton)
 
   // append DOM attributes to container
@@ -142,7 +143,7 @@ const LogInForm = function () {
   return form
 }
 
-const LogWithEmail = function () {
+const emailLoginForm = function () {
   // initialise DOM attributes for the login email form
   const form = document.createElement('form')
   const container = document.createElement('div')
@@ -151,6 +152,7 @@ const LogWithEmail = function () {
   const buttons = document.createElement('div')
   const submitButton = document.createElement('button')
   const cancelButton = document.createElement('button')
+  const usernameButton = document.createElement('button')
 
   // initialise the field for email and password
   const emailField = newInputField('loginEmail', 'Enter Email', 'Email', true)
@@ -162,22 +164,27 @@ const LogWithEmail = function () {
   form.action = '/logged-in'
   form.method = 'post'
 
-  container.classList = 'container'
+  container.classList = 'submission-form'
   buttons.classList = 'modal-buttons'
 
-  heading.textContent = 'LogIn'
+  heading.textContent = 'Login'
 
   // set button attributes
   submitButton.textContent = 'Login'
+  usernameButton.textContent = 'Login with Username'
   cancelButton.textContent = 'Cancel'
   submitButton.setAttribute('type', 'submit')
+  usernameButton.setAttribute('type', 'button')
+  usernameButton.setAttribute('id', 'login-username-button')
   cancelButton.setAttribute('type', 'button')
   cancelButton.setAttribute('id', 'email-cancel-button')
   submitButton.classList = 'submit-button'
+  usernameButton.classList = 'login-choice-button'
   cancelButton.classList = 'cancel-button'
 
   // append buttons to their container
   buttons.appendChild(submitButton)
+  buttons.appendChild(usernameButton)
   buttons.appendChild(cancelButton)
 
   // append DOM attributes to container
@@ -196,38 +203,45 @@ const LogWithEmail = function () {
 }
 
 const signUpBox = document.querySelector('#sign-up-box')
-const signUpButton = document.querySelector('#sign-up-button')
 signUpBox.appendChild(signUpForm())
+const usernameLoginBox = document.querySelector('#username-login-box')
+usernameLoginBox.appendChild(usernameLoginForm())
+const emailLoginBox = document.querySelector('#email-login-box')
+emailLoginBox.appendChild(emailLoginForm())
 
-const LogInBox = document.querySelector('#login-box')
-const LogInButton = document.querySelector('#login-button')
-LogInBox.appendChild(LogInForm())
+const signUpButton = document.querySelector('#sign-up-button')
+const loginButton = document.querySelector('#login-button')
 
-const EmailBox = document.querySelector('#email-box')
-const EmailButton = document.querySelector('.email-button')
-EmailBox.appendChild(LogWithEmail())
+const usernameButton = document.querySelector('#login-username-button')
+const emailButton = document.querySelector('#login-email-button')
 
-const signUpCancelButton = document.querySelector('#signUp-cancel-button')
-const logInCancelButton = document.querySelector('#logIn-cancel-button')
+const signUpCancelButton = document.querySelector('#sign-up-cancel-button')
+const logInCancelButton = document.querySelector('#username-cancel-button')
 const emailCancelButton = document.querySelector('#email-cancel-button')
 
 window.onclick = function (event) {
   if (event.target === signUpBox || event.target === signUpCancelButton) {
     signUpBox.style.display = 'none'
   }
-  if (event.target === LogInBox || event.target === logInCancelButton) {
-    LogInBox.style.display = 'none'
+  if (event.target === usernameLoginBox || event.target === logInCancelButton) {
+    usernameLoginBox.style.display = 'none'
   }
-  if (event.target === EmailBox || event.target === emailCancelButton) {
-    EmailBox.style.display = 'none'
+  if (event.target === emailLoginBox || event.target === emailCancelButton) {
+    emailLoginBox.style.display = 'none'
   }
   if (event.target === signUpButton) {
     signUpBox.style.display = 'block'
   }
-  if (event.target === LogInButton) {
-    LogInBox.style.display = 'block'
+  if (event.target === loginButton) {
+    usernameLoginBox.style.display = 'block'
+    emailLoginBox.style.display = 'none'
   }
-  if (event.target === EmailButton) {
-    EmailBox.style.display = 'block'
+  if (event.target === emailButton) {
+    emailLoginBox.style.display = 'block'
+    usernameLoginBox.style.display = 'none'
+  }
+  if (event.target === usernameButton) {
+    usernameLoginBox.style.display = 'block'
+    emailLoginBox.style.display = 'none'
   }
 }
