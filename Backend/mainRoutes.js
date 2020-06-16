@@ -50,6 +50,10 @@ mainRouter.use('/home', function (err, req, res, next) {
 })
 
 /// ////////////////// Debt Get Routes
+mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
+  console.log(req.body)
+  res.redirect('/home')
+})
 
 /// ////////////////// Debt Post Routes
 
