@@ -4,6 +4,7 @@
 const accountProcess = require('../Backend/accountProcess')
 
 test('A blank list of users is returned', () => {
+  accountProcess.clearList()
   expect(accountProcess.getList()).toEqual([])
 })
 

@@ -37,13 +37,13 @@ const signUpForm = function () {
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
-  form.classList = 'modal-content'
-  form.action = '/create-user'
+  form.classList = 'modal-box'
+  form.action = '/api/create-user'
   form.method = 'post'
 
   // set container attributes
   container.classList = 'submission-form'
-  buttons.classList = 'modal-buttons'
+  buttons.classList = 'modal-button-container'
 
   // set heading attributes
   heading.textContent = 'Sign Up'
@@ -54,8 +54,8 @@ const signUpForm = function () {
   submitButton.setAttribute('type', 'submit')
   cancelButton.setAttribute('type', 'button')
   cancelButton.setAttribute('id', 'sign-up-cancel-button')
-  submitButton.classList = 'submit-button'
-  cancelButton.classList = 'cancel-button'
+  submitButton.classList = 'modal-submit-button'
+  cancelButton.classList = 'modal-cancel-button'
 
   // append buttons to their container
   buttons.appendChild(submitButton)
@@ -99,13 +99,13 @@ const usernameLoginForm = function () {
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
-  form.classList = 'modal-content'
-  form.action = '/logged-in'
+  form.classList = 'modal-box'
+  form.action = '/api/logged-in'
   form.method = 'post'
 
   // set container attributes
   container.classList = 'submission-form'
-  buttons.classList = 'modal-buttons'
+  buttons.classList = 'modal-button-container'
 
   // set heading attributes
   heading.textContent = 'Login'
@@ -119,9 +119,9 @@ const usernameLoginForm = function () {
   emailButton.setAttribute('id', 'login-email-button')
   cancelButton.setAttribute('type', 'button')
   cancelButton.setAttribute('id', 'username-cancel-button')
-  submitButton.classList = 'submit-button'
-  emailButton.classList = 'login-choice-button'
-  cancelButton.classList = 'cancel-button'
+  submitButton.classList = 'modal-submit-button'
+  emailButton.classList = 'modal-action-button'
+  cancelButton.classList = 'modal-cancel-button'
 
   // append buttons to their container
   buttons.appendChild(submitButton)
@@ -160,12 +160,12 @@ const emailLoginForm = function () {
   passField[0].setAttribute('type', 'password')
 
   // set form attributes
-  form.classList = 'modal-content'
-  form.action = '/logged-in'
+  form.classList = 'modal-box'
+  form.action = '/api/logged-in'
   form.method = 'post'
 
   container.classList = 'submission-form'
-  buttons.classList = 'modal-buttons'
+  buttons.classList = 'modal-button-container'
 
   heading.textContent = 'Login'
 
@@ -178,9 +178,9 @@ const emailLoginForm = function () {
   usernameButton.setAttribute('id', 'login-username-button')
   cancelButton.setAttribute('type', 'button')
   cancelButton.setAttribute('id', 'email-cancel-button')
-  submitButton.classList = 'submit-button'
-  usernameButton.classList = 'login-choice-button'
-  cancelButton.classList = 'cancel-button'
+  submitButton.classList = 'modal-submit-button'
+  usernameButton.classList = 'modal-action-button'
+  cancelButton.classList = 'modal-cancel-button'
 
   // append buttons to their container
   buttons.appendChild(submitButton)
