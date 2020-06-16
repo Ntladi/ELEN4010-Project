@@ -11,9 +11,9 @@
     <div class="top-container">
         <div class="top-box"><h1 class="top-header">BillSplitter</h1></div>
     </div>
-    <div class="card-container">
-        <div class="card-box">
-            <h2 class="card-header" > <%=error %> </h2>
+    <div class="card-container" id ="error-card-container">
+        <div class="card-box" id ="error-card-box">
+            <h2 class="card-header" id="error-card-header"> <%=error %> </h2>
             <div class="card-message-container">
                     <p style="text-align: center;"><%=message %></p>
                     <ul>
@@ -23,7 +23,7 @@
                     </ul>
             </div>
             <div class="card-button-container">
-                <button class="card-button"><%= button %></button>
+                <button class="card-button" id="error-card-button"><%= button %></button>
             </div>
         </div>
     </div>

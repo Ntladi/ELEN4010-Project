@@ -21,6 +21,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -70,27 +71,22 @@ input[type=text], input[type=password] {
     -o-transition: background-color .3s ease-in-out;
 }
 
+p {
+    text-align: center;
+}
 /*
 /////////////// Top Styles
 */
 
 .top-container { 
     display: flex;
-    justify-content: space-around;
     align-items: center;
 }
 
 .top-box {
-    display: block;
-    text-align: center;
-    padding: auto;
-}
-
-.top-header {
-    text-align: center;
-}
-
-.top-greeting-header {
+    flex: 1;
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 
@@ -103,10 +99,11 @@ input[type=text], input[type=password] {
 */
 
 .card-container {
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
+
 
 .card-box {
     justify-content: center;
@@ -121,10 +118,13 @@ input[type=text], input[type=password] {
 .card-header {  
     text-align: center;
     padding: 1.5rem 2.5rem;
-    background-image: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+    background-image: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
     margin: 0 0 2rem 0;
     font-size: 1.5rem;
     color: white;
+}
+#error-card-header {
+    background-image: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
 }
 
 .card-message-container {
@@ -141,6 +141,10 @@ input[type=text], input[type=password] {
 }
 
 .card-button {
+    background-image: linear-gradient(120deg, #9B6B8D 0%, #fecfef 100%);
+}
+
+#error-card-button {
     background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
 }
 
@@ -213,4 +217,32 @@ input[type=text], input[type=password] {
     background-image: linear-gradient(120deg, #9B6B8D 0%, #fecfef 100%);
 }
 
+@media screen and (min-width: 100px) {
+    #top-username-box {
+        display: none;
+    }
+    #top-header-box {
+        margin-left: auto;
+    }
+    #top-logout-button-box {
+        margin-right: auto;
+    }
+    #expense-box {
+      flex: 1 1 calc(60% - 2rem);
+    }
+  }
 
+@media screen and (min-width: 600px) {
+    #top-username-box {
+        display: block;
+    }
+    #expense-box {
+      flex: 1 1 calc(50% - 2rem);
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    #expense-box {
+      flex: 1 1 calc(33% - 2rem);
+    }
+  }

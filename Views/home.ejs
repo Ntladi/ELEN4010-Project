@@ -10,12 +10,16 @@
 </head>
 <body>
     <div class="top-container">
-        <div class="top-box"><h1 class="top-header">BillSplitter</h1></div>
-        <div class="top-box"><button onclick="location.href = '/logged-out'" class="top-button" id="top-logout-button">Logout</button></div>
+        <div class="top-box" id="top-username-box"><h2>Welcome <%=firstName%></h2></div>
+        <div class="top-box" id="top-header-box"><h1 >BillSplitter</h1></div>
+        <div class="top-box" id="top-logout-button-box"><button onclick="location.href = '/logged-out'" class="top-button" id="top-logout-button">Logout</button></div>
     </div>
     <div class="big-button-container">
         <button class="big-button" id="add-expense-button">Add Expense</button>
     </div>
     <div id="add-expense-box" class="modal-container"></div>
+    <div class="card-container" id="expense-card-container">
+
+    </div>
 </body>
 </html>

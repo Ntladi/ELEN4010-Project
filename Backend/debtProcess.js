@@ -1,7 +1,23 @@
 'use strict'
 
 // Private
-let expenses = []
+let expenses = [
+  {
+    description: 'Rent',
+    amount: '3000.60',
+    user: 'Chiloanel'
+  },
+  {
+    description: 'Electricity',
+    amount: '2060.50',
+    user: 'GeriKirui'
+  },
+  {
+    description: 'Water',
+    amount: '3267.22',
+    user: 'PendapalaS'
+  }
+]
 
 const formatDescription = function (description) {
   description = description.toLowerCase()
