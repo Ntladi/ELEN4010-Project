@@ -1,6 +1,6 @@
 'use strict'
 
-const dataManager = require('./dbAccountManagement')
+const accountManager = require('./dbAccountManagement')
 const express = require('express')
 const mainRouter = express.Router()
 
@@ -34,12 +34,12 @@ mainRouter.get('/logged-out', function (req, res) {
 
 mainRouter.post('/api/create-user', function (req, res) { // will handle the user creation process
   console.log(req.body)
-  dataManager.addUser(req.body, req, res)
+  accountManager.addUser(req.body, req, res)
 })
 
 mainRouter.post('/api/logged-in', function (req, res) { // will handle the user login process
   console.log(req.body)
-  dataManager.login(req.body, req, res)
+  accountManager.login(req.body, req, res)
 })
 
 /// ////////////////// User Checks

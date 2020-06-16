@@ -16,7 +16,8 @@ const passwordCompare = function (index, password, req, res) {
     res.redirect('/home')
   } else {
     const message = 'Please try again'
-    res.render('invalid_credentials.ejs', { error: 'Invalid Password', message: message, tips: [] })
+    res.render('error.ejs',
+      { error: 'Invalid Password', message: message, tips: [], link: '/', button: 'Accounts' })
   }
 }
 
@@ -39,29 +40,34 @@ module.exports.addUser = async function (details, req, res) {
     await getList()
     if (!accountProcess.isUsernameUnique(user.username)) {
       const message = `The username for '${user.username}' already exists.`
-      res.render('invalid_credentials.ejs', { error: 'Invalid Username', message: message, tips: [] })
+      res.render('error.ejs',
+        { error: 'Invalid Username', message: message, tips: [], link: '/', button: 'Accounts' })
       return
     }
     if (!accountProcess.isEmailUnique(user.email)) {
       const message = `The email address for '${user.email}' already exists.`
-      res.render('invalid_credentials.ejs', { error: 'Invalid Email Address', message: message, tips: [] })
+      res.render('error.ejs',
+        { error: 'Invalid Email Address', message: message, tips: [], link: '/', button: 'Accounts' })
       return
     }
     if (!accountProcess.isUsernameValid(user.username)) {
       const message = `The username '${user.username}' cannot be used. A valid username must:`
       const tips = ['Have a minimum length of 5 alphanumeric characters', 'Not be the same as the password']
-      res.render('invalid_credentials.ejs', { error: 'Invalid Username', message: message, tips: tips })
+      res.render('error.ejs',
+        { error: 'Invalid Username', message: message, tips: tips, link: '/', button: 'Accounts' })
       return
     }
     if (!accountProcess.isEmailValid(user.email)) {
-      res.render('invalid_credentials.ejs', { error: 'Invalid Email Address', message: '', tips: [] })
+      res.render('error.ejs',
+        { error: 'Invalid Email Address', message: '', tips: [], link: '/', button: 'Accounts' })
       return
     }
     if (!accountProcess.isPasswordValid(user.username, user.password)) {
       const message = 'The password is invalid. A valid password must:'
       const tips = ['Have a minimum length of 5 alphanumeric characters', 'Not be the same as the username']
       // const info = { message: message, tips: tips }
-      res.render('invalid_credentials.ejs', { error: 'Invalid Password', message: message, tips: tips })
+      res.render('error.ejs',
+        { error: 'Invalid Password', message: message, tips: tips, link: '/', button: 'Accounts' })
       return
     }
     const pool = await db.pools
@@ -71,7 +77,8 @@ module.exports.addUser = async function (details, req, res) {
   } catch (err) {
     console.log(err)
     const message = 'Please Try Again'
-    res.render('invalid_credentials.ejs', { error: 'Error Accessing Database', message: message, tips: [] })
+    res.render('error.ejs',
+      { error: 'Error Accessing Database', message: message, tips: [], link: '/', button: 'Accounts' })
   }
 }
 
@@ -84,7 +91,8 @@ module.exports.login = async function (details, req, res) {
         passwordCompare(index, details.loginUsernamePassword, req, res)
       } else {
         const message = `The username for '${details.loginUsername}' does not exist.`
-        res.render('invalid_credentials.ejs', { error: 'Invalid Username', message: message, tips: [] })
+        res.render('error.ejs',
+          { error: 'Invalid Username', message: message, tips: [], link: '/', button: 'Accounts' })
       }
     }
     if ('loginEmail' in details) {
@@ -93,12 +101,14 @@ module.exports.login = async function (details, req, res) {
         passwordCompare(index, details.loginEmailPassword, req, res)
       } else {
         const message = `The email address for '${details.loginEmail}' does not exist.`
-        res.render('invalid_credentials.ejs', { error: 'Invalid Email', message: message, tips: [] })
+        res.render('error.ejs',
+          { error: 'Invalid Email', message: message, tips: [], link: '/', button: 'Accounts' })
       }
     }
   } catch (err) {
     console.log(err)
     const message = 'Please Try Again'
-    res.render('invalid_credentials.ejs', { error: 'Error Accessing Database', message: message, tips: [] })
+    res.render('error.ejs',
+      { error: 'Error Accessing Database', message: message, tips: [], link: '/', button: 'Accounts' })
   }
 }
