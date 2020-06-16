@@ -31,8 +31,9 @@ mainRouter.post('/logged-in', function (req, res) { // will handle the user logi
 })
 
 mainRouter.get('/logged-out', function (req, res) {
+  const username = req.session.user.username
   req.session.destroy(function () {
-    console.log(`User '${req.session.user.username}' logged out`)
+    console.log(`User ${username} logged out`)
   })
   res.redirect('/')
 })
