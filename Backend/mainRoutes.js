@@ -1,6 +1,6 @@
 'use strict'
 
-const dataManager = require('./dbManagement')
+const dataManager = require('./dbAccountManagement')
 const express = require('express')
 const mainRouter = express.Router()
 
@@ -12,22 +12,14 @@ function checkSignIn (req, res, next) {
   }
 }
 
+/// ////////////////// User Get Routes
+
 mainRouter.get('/', function (req, res) { // the welcome page
   res.render('index.ejs')
 })
 
 mainRouter.get('/home', checkSignIn, function (req, res) { // the main home page once signed in
   res.render('home.ejs', { firstName: req.session.user.firstName })
-})
-
-mainRouter.post('/create-user', function (req, res) { // will handle the user creation process
-  console.log(req.body)
-  dataManager.addUser(req.body, req, res)
-})
-
-mainRouter.post('/logged-in', function (req, res) { // will handle the user login process
-  console.log(req.body)
-  dataManager.login(req.body, req, res)
 })
 
 mainRouter.get('/logged-out', function (req, res) {
@@ -38,9 +30,29 @@ mainRouter.get('/logged-out', function (req, res) {
   res.redirect('/')
 })
 
+/// ////////////////// User Post Routes
+
+mainRouter.post('/api/create-user', function (req, res) { // will handle the user creation process
+  console.log(req.body)
+  dataManager.addUser(req.body, req, res)
+})
+
+mainRouter.post('/api/logged-in', function (req, res) { // will handle the user login process
+  console.log(req.body)
+  dataManager.login(req.body, req, res)
+})
+
+/// ////////////////// User Checks
+
 mainRouter.use('/home', function (err, req, res, next) {
   console.log(err)
   res.redirect('/')
 })
+
+/// ////////////////// Debt Get Routes
+
+/// ////////////////// Debt Post Routes
+
+/// ////////////////// Debt Checks
 
 module.exports = mainRouter

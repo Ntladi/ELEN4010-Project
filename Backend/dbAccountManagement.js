@@ -1,3 +1,5 @@
+'use strict'
+
 const db = require('./dbConnect')
 const accountProcess = require('./accountProcess')
 
