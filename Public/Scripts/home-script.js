@@ -1,5 +1,7 @@
 'use strict'
 
+import { listExpenses } from './modules/api-handler-script.js'
+
 const newInputField = function (id, placeholder, labelText, required) {
   const field = document.createElement('input')
   const label = document.createElement('label')
@@ -77,6 +79,8 @@ addExpenseBox.appendChild(newExpenseForm())
 
 const addExpenseButton = document.querySelector('#add-expense-button')
 const addExpenseCancelBetton = document.querySelector('#add-expense-cancel-button')
+const allExpenses = document.querySelector('#expense-card-container')
+listExpenses(allExpenses)
 
 window.onclick = function (event) {
   if (event.target === addExpenseBox || event.target === addExpenseCancelBetton) {

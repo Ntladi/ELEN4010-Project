@@ -38,7 +38,7 @@ const signUpForm = function () {
 
   // set form attributes
   form.classList = 'modal-box'
-  form.action = '/create-user'
+  form.action = '/api/create-user'
   form.method = 'post'
 
   // set container attributes
@@ -100,7 +100,7 @@ const usernameLoginForm = function () {
 
   // set form attributes
   form.classList = 'modal-box'
-  form.action = '/logged-in'
+  form.action = '/api/logged-in'
   form.method = 'post'
 
   // set container attributes
@@ -161,7 +161,7 @@ const emailLoginForm = function () {
 
   // set form attributes
   form.classList = 'modal-box'
-  form.action = '/logged-in'
+  form.action = '/api/logged-in'
   form.method = 'post'
 
   container.classList = 'submission-form'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BillSplitter Error</title>
+    <title>Error</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
@@ -11,9 +11,9 @@
     <div class="top-container">
         <div class="top-box"><h1 class="top-header">BillSplitter</h1></div>
     </div>
-    <div class="card-container">
-        <div class="card-box">
-            <h2 class="card-header" > <%=error %> </h2>
+    <div class="card-container" id ="error-card-container">
+        <div class="card-box" id ="error-card-box">
+            <h2 class="card-header" id="error-card-header"> <%=error %> </h2>
             <div class="card-message-container">
                     <p style="text-align: center;"><%=message %></p>
                     <ul>
@@ -23,9 +23,15 @@
                     </ul>
             </div>
             <div class="card-button-container">
-                <button onclick="location.href = window.location.origin" class="card-button" id="card-account-button">Accounts</button>
+                <button class="card-button" id="error-card-button"><%= button %></button>
             </div>
         </div>
     </div>
+    <script>
+        const cardButton = document.querySelector('.card-button');
+        cardButton.addEventListener('click', function(event) {
+            window.location.href = '<%= link %>';
+        })
+    </script>
 </body>
 </html>
