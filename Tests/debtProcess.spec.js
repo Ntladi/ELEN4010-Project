@@ -12,17 +12,17 @@ describe('Tests for amount validity', () => {
   test('A positive integer string is a valid amount', () => {
     expect(debtProcess.isAmountNumber('13')).toEqual(true)
   })
-  test('A negative integer string is a valid amount', () => {
-    expect(debtProcess.isAmountNumber('-15')).toEqual(true)
+  test('A negative integer string is an invalid amount', () => {
+    expect(debtProcess.isAmountNumber('-15')).not.toEqual(true)
   })
-  test('Zero is valid amount', () => {
-    expect(debtProcess.isAmountNumber('0')).toEqual(true)
+  test('Zero is not a valid amount', () => {
+    expect(debtProcess.isAmountNumber('0')).not.toEqual(true)
   })
   test('A positive float string is a valid amount', () => {
     expect(debtProcess.isAmountNumber('12.45')).toEqual(true)
   })
-  test('A negative float string is a positive amount', () => {
-    expect(debtProcess.isAmountNumber('-13.5')).toEqual(true)
+  test('A negative float string is an invalid amount', () => {
+    expect(debtProcess.isAmountNumber('-13.5')).not.toEqual(true)
   })
   test('A pure string of alphabets is an invalid amount', () => {
     expect(debtProcess.isAmountNumber('hello')).not.toEqual(true)

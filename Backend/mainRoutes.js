@@ -1,6 +1,7 @@
 'use strict'
 
 const accountManager = require('./dbAccountManagement')
+const debtManager = require('./dbDebtManagement')
 const express = require('express')
 const mainRouter = express.Router()
 
@@ -52,7 +53,7 @@ mainRouter.use('/home', function (err, req, res, next) {
 /// ////////////////// Debt Get Routes
 mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
   console.log(req.body)
-  res.redirect('/home')
+  debtManager.addExpense(req.body, res)
 })
 
 /// ////////////////// Debt Post Routes

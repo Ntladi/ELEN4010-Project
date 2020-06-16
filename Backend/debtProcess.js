@@ -1,20 +1,7 @@
 'use strict'
 
 // Private
-let expenses = [
-  {
-    description: 'Rent',
-    amount: '200'
-  },
-  {
-    description: 'Electricity',
-    amount: '3000.50'
-  },
-  {
-    description: 'Groceries',
-    amount: '244.17'
-  }
-]
+let expenses = []
 
 const formatDescription = function (description) {
   description = description.toLowerCase()
@@ -31,6 +18,8 @@ const formatAmount = function (amount) {
 module.exports = {
   isAmountNumber: function (amount) {
     if (isNaN(amount)) { return false }
+    const number = parseFloat(amount)
+    if (number <= 0) { return false }
     return true
   },
 
@@ -74,5 +63,11 @@ module.exports = {
 
   addExpense: function (expense) {
     expenses.push(expense)
+  },
+
+  formatDescription: function (description) {
+    description = description.toLowerCase()
+    description = description[0].toUpperCase() + description.slice(1)
+    return description
   }
 }
