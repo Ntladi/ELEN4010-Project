@@ -7,10 +7,11 @@ const createUserQuery = function (user) {
   return command + formattedData
 }
 
-const passwordCompare = function (index, password, res) {
+const passwordCompare = function (index, password, req, res) {
   const user = accountProcess.getList()[index]
   if (user.password === password) {
-    res.send('Login Successful')
+    req.session.user = { firstName: user.firstName, username: user.username }
+    res.redirect('/home')
   } else {
     const message = 'Please try again'
     res.render('invalid_credentials.ejs', { error: 'Invalid Password', message: message, tips: [] })
@@ -30,7 +31,7 @@ async function getList () {
   }
 }
 
-module.exports.addUser = async function (details, res) {
+module.exports.addUser = async function (details, req, res) {
   const user = accountProcess.createUser(details)
   try {
     await getList()
@@ -47,7 +48,6 @@ module.exports.addUser = async function (details, res) {
     if (!accountProcess.isUsernameValid(user.username)) {
       const message = `The username '${user.username}' cannot be used. A valid username must:`
       const tips = ['Have a minimum length of 5 alphanumeric characters', 'Not be the same as the password']
-      // const info = { message: message, tip: tips }
       res.render('invalid_credentials.ejs', { error: 'Invalid Username', message: message, tips: tips })
       return
     }
@@ -64,7 +64,8 @@ module.exports.addUser = async function (details, res) {
     }
     const pool = await db.pools
     await pool.request().query(createUserQuery(user))
-    res.send(`User '${user.username}' Created.`)
+    req.session.user = { firstName: user.firstName, username: user.username }
+    res.redirect('/home')
   } catch (err) {
     console.log(err)
     const message = 'Please Try Again'
@@ -72,13 +73,13 @@ module.exports.addUser = async function (details, res) {
   }
 }
 
-module.exports.login = async function (details, res) {
+module.exports.login = async function (details, req, res) {
   try {
     await getList()
     if ('loginUsername' in details) {
       const index = accountProcess.userNameExists(details.loginUsername)
       if (index !== -1) {
-        passwordCompare(index, details.loginUsernamePassword, res)
+        passwordCompare(index, details.loginUsernamePassword, req, res)
       } else {
         const message = `The username for '${details.loginUsername}' does not exist.`
         res.render('invalid_credentials.ejs', { error: 'Invalid Username', message: message, tips: [] })
@@ -87,7 +88,7 @@ module.exports.login = async function (details, res) {
     if ('loginEmail' in details) {
       const index = accountProcess.emailExists(details.loginEmail)
       if (index !== -1) {
-        passwordCompare(index, details.loginEmailPassword, res)
+        passwordCompare(index, details.loginEmailPassword, req, res)
       } else {
         const message = `The email address for '${details.loginEmail}' does not exist.`
         res.render('invalid_credentials.ejs', { error: 'Invalid Email', message: message, tips: [] })

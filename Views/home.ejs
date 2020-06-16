@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>About</title>
+    <title>BillSplitter Home</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/cdn/CSS/style.css">
+    <script type="module" src="/cdn/Scripts/home-script.js"></script>
 </head>
 <body>
+    <div id="username" style="display: none;"><%=firstName%></div>
+    <div class="top-container">
+        <div class="top-box"><h1 class="top-header">BillSplitter</h1></div>
+        <div class="top-box"><button onclick="location.href = '/logged-out'" class="top-button" id="top-logout-button">Logout</button></div>
+    </div>
+    <div class="big-button-container">
+        <button class="big-button" id="add-expense-button">Add Expense</button>
+    </div>
+    <div id="add-expense-box" class="modal-container"></div>
 </body>
 </html>
