@@ -44,16 +44,19 @@ describe('Tests for creating an expense', () => {
   test('A new expense can be created', () => {
     const expenseFromClient = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
     expect(newExpense.description).toEqual(expenseFromClient.expenseDescription)
     expect(newExpense.amount).toEqual(expenseFromClient.expenseAmount)
+    expect(newExpense.user).toEqual(expenseFromClient.username)
   })
   test('A new expense is automatically formatted', () => {
     const expenseFromClient = {
       expenseDescription: 'elECtRiCity',
-      expenseAmount: '1520.1186534'
+      expenseAmount: '1520.1186534',
+      username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
     expect(newExpense.description).toEqual('Electricity')
@@ -67,7 +70,8 @@ describe('Tests for adding expenses to the private list', () => {
     const list = debtProcess.getList()
     const expenseFromClient = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
     debtProcess.addExpense(newExpense)
@@ -80,11 +84,13 @@ describe('Tests for adding expenses to the private list', () => {
     const list = debtProcess.getList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     const expense2 = {
       expenseDescription: 'Electricity',
-      expenseAmount: '1500.60'
+      expenseAmount: '1500.60',
+      username: 'GeriKirui'
     }
     const newExpense1 = debtProcess.createExpense(expense1)
     const newExpense2 = debtProcess.createExpense(expense2)
@@ -106,7 +112,8 @@ describe('Tests for querying expenses', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     debtProcess.addExpense(debtProcess.createExpense(expense1))
     expect(debtProcess.doesExpenseExist('Rent')).toEqual(true)
@@ -115,7 +122,8 @@ describe('Tests for querying expenses', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     debtProcess.addExpense(debtProcess.createExpense(expense1))
     expect(debtProcess.doesExpenseExist('Electricity')).toEqual(false)
@@ -124,7 +132,8 @@ describe('Tests for querying expenses', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     debtProcess.addExpense(debtProcess.createExpense(expense1))
     expect(debtProcess.doesExpenseExist('rent')).toEqual(true)
@@ -140,7 +149,8 @@ describe('Tests for returning an expense', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expense1)
     debtProcess.addExpense(newExpense)
@@ -150,7 +160,8 @@ describe('Tests for returning an expense', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     debtProcess.addExpense(debtProcess.createExpense(expense1))
     expect(debtProcess.getExpense('Electricity')).toEqual({})
@@ -159,7 +170,8 @@ describe('Tests for returning an expense', () => {
     debtProcess.clearList()
     const expense1 = {
       expenseDescription: 'Rent',
-      expenseAmount: '200.00'
+      expenseAmount: '200.00',
+      username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expense1)
     debtProcess.addExpense(newExpense)

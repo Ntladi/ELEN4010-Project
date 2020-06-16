@@ -4,7 +4,6 @@ const debtProcess = require('./debtProcess')
 
 module.exports.addExpense = async function (details, res) {
   try {
-    console.log(debtProcess.getList())
     if (debtProcess.doesExpenseExist(details.expenseDescription)) {
       const message = `The expense '${debtProcess.formatDescription(details.expenseDescription)}' already exists.`
       res.render('error.ejs',
@@ -19,7 +18,19 @@ module.exports.addExpense = async function (details, res) {
       return
     }
     debtProcess.addExpense(debtProcess.createExpense(details))
+    console.log(debtProcess.getList())
     res.redirect('/home')
+  } catch (err) {
+    console.log(err)
+    const message = 'Please Try Again'
+    res.render('error.ejs',
+      { error: 'Error Accessing Database', message: message, tips: [], link: '/home', button: 'home' })
+  }
+}
+
+module.exports.getDebts = async function (res) {
+  try {
+    res.json(debtProcess.getList())
   } catch (err) {
     console.log(err)
     const message = 'Please Try Again'

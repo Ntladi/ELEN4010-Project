@@ -24,10 +24,7 @@ mainRouter.get('/home', checkSignIn, function (req, res) { // the main home page
 })
 
 mainRouter.get('/logged-out', function (req, res) {
-  const username = req.session.user.username
-  req.session.destroy(function () {
-    console.log(`User ${username} logged out`)
-  })
+  req.session.destroy(function () {})
   res.redirect('/')
 })
 
@@ -51,12 +48,20 @@ mainRouter.use('/home', function (err, req, res, next) {
 })
 
 /// ////////////////// Debt Get Routes
-mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
-  console.log(req.body)
-  debtManager.addExpense(req.body, res)
+mainRouter.get('/api/get-expenses', function (req, res) {
+  debtManager.getDebts(res)
 })
-
 /// ////////////////// Debt Post Routes
+mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
+  const username = req.session.user.username
+  const details = {
+    expenseDescription: req.body.expenseDescription,
+    expenseAmount: req.body.expenseAmount,
+    username: username
+  }
+  console.log(details)
+  debtManager.addExpense(details, res)
+})
 
 /// ////////////////// Debt Checks
 

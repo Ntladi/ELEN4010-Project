@@ -48,7 +48,8 @@ module.exports = {
     const amount = formatAmount(expense.expenseAmount)
     const newExpense = {
       description: description,
-      amount: amount
+      amount: amount,
+      user: expense.username
     }
     return newExpense
   },
