@@ -48,6 +48,7 @@ describe('Tests for creating an expense', () => {
       username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
+    expect(newExpense.date).toEqual(Date().toString())
     expect(newExpense.description).toEqual(expenseFromClient.expenseDescription)
     expect(newExpense.amount).toEqual(expenseFromClient.expenseAmount)
     expect(newExpense.user).toEqual(expenseFromClient.username)

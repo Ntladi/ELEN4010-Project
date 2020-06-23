@@ -6,6 +6,7 @@ const card = function (expenses) {
   const details = document.createElement('div')
   const amount = document.createElement('p')
   const user = document.createElement('p')
+  const date = document.createElement('p')
   const buttonContainer = document.createElement('div')
   const button = document.createElement('button')
 
@@ -19,10 +20,12 @@ const card = function (expenses) {
   header.textContent = expenses.description
   amount.textContent = `Amount: R${expenses.amount}`
   user.textContent = `User: ${expenses.user}`
+  date.textContent = `Date: ${expenses.date}`
   button.textContent = 'Settle'
 
   details.appendChild(amount)
   details.appendChild(user)
+  details.appendChild(date)
   buttonContainer.appendChild(button)
   cardBox.appendChild(header)
   cardBox.appendChild(details)

@@ -5,17 +5,20 @@ let expenses = [
   {
     description: 'Rent',
     amount: '3000.60',
-    user: 'Chiloanel'
+    user: 'Chiloanel',
+    date: Date().toString()
   },
   {
     description: 'Electricity',
     amount: '2060.50',
-    user: 'GeriKirui'
+    user: 'GeriKirui',
+    date: Date().toString()
   },
   {
     description: 'Water',
     amount: '3267.22',
-    user: 'PendapalaS'
+    user: 'PendapalaS',
+    date: Date().toString()
   }
 ]
 
@@ -65,7 +68,8 @@ module.exports = {
     const newExpense = {
       description: description,
       amount: amount,
-      user: expense.username
+      user: expense.username,
+      date: Date().toString()
     }
     return newExpense
   },
