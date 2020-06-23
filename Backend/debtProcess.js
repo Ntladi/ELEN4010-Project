@@ -1,26 +1,7 @@
 'use strict'
 
 // Private
-let expenses = [
-  {
-    description: 'Rent',
-    amount: '3000.60',
-    user: 'Chiloanel',
-    date: Date().toString()
-  },
-  {
-    description: 'Electricity',
-    amount: '2060.50',
-    user: 'GeriKirui',
-    date: Date().toString()
-  },
-  {
-    description: 'Water',
-    amount: '3267.22',
-    user: 'PendapalaS',
-    date: Date().toString()
-  }
-]
+let expenses = []
 
 const formatDescription = function (description) {
   description = description.toLowerCase()
@@ -65,11 +46,12 @@ module.exports = {
   createExpense: function (expense) {
     const description = formatDescription(expense.expenseDescription)
     const amount = formatAmount(expense.expenseAmount)
+    const date = new Date()
     const newExpense = {
       description: description,
       amount: amount,
       user: expense.username,
-      date: Date().toString()
+      date: date.toLocaleDateString()
     }
     return newExpense
   },
