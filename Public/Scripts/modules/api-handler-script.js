@@ -13,7 +13,7 @@ const card = function (expenses, type) {
 
   if (expenses.status === 'mine') {
     cardBox.classList.add('card-box', 'my-expense')
-  } else { cardBox.classList = 'card-box' }
+  } else { cardBox.classList.add('card-box', 'pending-expense') }
   cardBox.setAttribute('id', 'expense-box')
   header.classList = 'card-header'
   details.classList = 'card-message-container'

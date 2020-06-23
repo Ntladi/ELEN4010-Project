@@ -170,8 +170,12 @@ p {
 }
 
 .modal-filter-button {
-    background-image: linear-gradient(120deg, #101A92 0%, #9398CA 100%);
+    background-image: linear-gradient(120deg, #09C6F9 0%, #045DE9 100%);
 }
+
+.modal-filter-button-active {
+    background-image: linear-gradient(120deg, #101A92 0%, #9398CA 100%);
+  }
 
 #add-expense-button {
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);

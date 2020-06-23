@@ -81,7 +81,7 @@ const newFilterForm = function () {
   const heading = document.createElement('h1')
   const line = document.createElement('hr')
   const buttons = document.createElement('div')
-  const submitButton = document.createElement('button')
+  const applyButton = document.createElement('button')
   const myExpensesButton = document.createElement('button')
   const pendingDebtsButton = document.createElement('button')
   const settledDebtsButton = document.createElement('button')
@@ -97,33 +97,34 @@ const newFilterForm = function () {
   container.classList = 'submission-form'
 
   // set button attributes
-  submitButton.textContent = 'Apply'
-  submitButton.classList = 'modal-submit-button'
-  submitButton.setAttribute('type', 'button')
+  applyButton.textContent = 'Apply'
+  applyButton.classList = 'modal-submit-button'
+  applyButton.setAttribute('type', 'button')
+  applyButton.setAttribute('id', 'apply-button')
 
   // set button attributes
-  myExpensesButton.textContent = 'Show My Posted Expenses'
-  myExpensesButton.classList = 'modal-filter-button'
+  myExpensesButton.textContent = 'Hide My Posted Expenses'
+  myExpensesButton.classList = 'modal-filter-button-active'
   myExpensesButton.setAttribute('type', 'button')
   myExpensesButton.setAttribute('id', 'show-my-expenses-button')
 
-  pendingDebtsButton.textContent = 'Show My Pending Expenses'
-  pendingDebtsButton.classList = 'modal-filter-button'
+  pendingDebtsButton.textContent = 'Hide My Pending Expenses'
+  pendingDebtsButton.classList = 'modal-filter-button-active'
   pendingDebtsButton.setAttribute('type', 'button')
   pendingDebtsButton.setAttribute('id', 'show-my-pending-debts-button')
 
-  settledDebtsButton.textContent = 'Show My Settled Expenses'
-  settledDebtsButton.classList = 'modal-filter-button'
+  settledDebtsButton.textContent = 'Hide My Settled Expenses'
+  settledDebtsButton.classList = 'modal-filter-button-active'
   settledDebtsButton.setAttribute('type', 'button')
   settledDebtsButton.setAttribute('id', 'show-my-settled-debts-button')
 
-  otherExpensesButton.textContent = 'Show Other Expenses'
-  otherExpensesButton.classList = 'modal-filter-button'
+  otherExpensesButton.textContent = 'Hide Other Expenses'
+  otherExpensesButton.classList = 'modal-filter-button-active'
   otherExpensesButton.setAttribute('type', 'button')
-  otherExpensesButton.setAttribute('id', 'show-my-settled-debts-button')
+  otherExpensesButton.setAttribute('id', 'show-other-debts-button')
 
   // append buttons to their container
-  buttons.appendChild(submitButton)
+  buttons.appendChild(applyButton)
 
   // append DOM attributes to container
   container.appendChild(heading)
@@ -161,7 +162,29 @@ window.onclick = function (event) {
   if (event.target === filterCardsButton) {
     filterExpenseBox.style.display = 'block'
   }
-  if (event.target === filterExpenseBox) {
+  if (event.target === document.querySelector('#apply-button')) {
     filterExpenseBox.style.display = 'none'
+  }
+  if (event.target === document.querySelector('#show-my-expenses-button')) {
+    filterElements(event.target, 'Show My Posted Expenses', 'Hide My Posted Expenses')
+  }
+  if (event.target === document.querySelector('#show-my-pending-debts-button')) {
+    filterElements(event.target, 'Show My Pending Expenses', 'Hide My Pending Expenses')
+  }
+  if (event.target === document.querySelector('#show-my-settled-debts-button')) {
+    filterElements(event.target, 'Show My Settled Expenses', 'Hide My Settled Expenses')
+  }
+  if (event.target === document.querySelector('#show-other-debts-button')) {
+    filterElements(event.target, 'Show Other Expenses', 'Hide Other Expenses')
+  }
+}
+
+function filterElements (target, showText, hideText) {
+  if (target.className === 'modal-filter-button') {
+    target.textContent = hideText
+    target.classList = 'modal-filter-button-active'
+  } else if (target.className === 'modal-filter-button-active') {
+    target.textContent = showText
+    target.classList = 'modal-filter-button'
   }
 }
