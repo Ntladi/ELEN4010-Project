@@ -51,10 +51,21 @@ module.exports.addExpense = async function (details, res) {
   }
 }
 
-module.exports.getDebts = async function (res) {
+module.exports.getDebts = async function (req, res) {
   try {
     await getList()
-    res.json(debtProcess.getList())
+    const expenses = debtProcess.getList()
+    if ('user' in req.session) {
+      expenses.forEach(expense => {
+        if (expense.username === req.session.user.username) {
+          expense.status = 'mine'
+        } else {
+          expense.status = 'yours'
+        }
+      })
+    }
+
+    res.json(expenses)
   } catch (err) {
     console.log(err)
     const message = 'Please Try Again'

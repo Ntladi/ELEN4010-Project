@@ -19,3 +19,14 @@ CREATE TABLE Expenses (
     dateAdded varchar(255) NOT NULL,
     CONSTRAINT userFK FOREIGN KEY(username) REFERENCES Users(username)
 );
+
+CREATE TABLE Paid (
+    payID int IDENTITY(1,1) PRIMARY KEY,
+    debtID int NOT NULL,
+    description varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    datePayed varchar(255) NOT NULL,
+    amountPaid money CHECK (amount >= 0) NOT NULL,
+    CONSTRAINT userFK FOREIGN KEY(username) REFERENCES Users(username),
+    CONSTRAINT debtFK FOREIGN KEY(debtID) REFERENCES Expenses(debtID)
+);
