@@ -42,14 +42,12 @@ describe('Tests for amount validity', () => {
 
 describe('Tests for creating an expense', () => {
   test('A new expense can be created', () => {
-    const date = new Date()
     const expenseFromClient = {
       expenseDescription: 'Rent',
       expenseAmount: '200.00',
       username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
-    expect(newExpense.dateAdded).toEqual(date.toLocaleDateString())
     expect(newExpense.description).toEqual(expenseFromClient.expenseDescription)
     expect(newExpense.amount).toEqual(expenseFromClient.expenseAmount)
     expect(newExpense.username).toEqual(expenseFromClient.username)

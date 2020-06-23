@@ -26,6 +26,6 @@ CREATE TABLE Paid (
     description varchar(255) NOT NULL,
     username varchar(255) NOT NULL,
     datePayed varchar(255) NOT NULL,
-    CONSTRAINT userFK FOREIGN KEY(username) REFERENCES Users(username),
+    CONSTRAINT userFKPaid FOREIGN KEY(username) REFERENCES Users(username),
     CONSTRAINT debtFK FOREIGN KEY(debtID) REFERENCES Expenses(debtID)
 );

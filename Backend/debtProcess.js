@@ -51,7 +51,7 @@ module.exports = {
       description: description,
       amount: amount,
       username: expense.username,
-      dateAdded: date.toLocaleDateString()
+      dateAdded: date.toLocaleString()
     }
     return newExpense
   },
