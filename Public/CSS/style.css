@@ -169,14 +169,12 @@ p {
     overflow: hidden;
 }
 
-#add-expense-button {
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-}
-#personal-log-button {
+.modal-filter-button {
     background-image: linear-gradient(120deg, #101A92 0%, #9398CA 100%);
 }
-#household-log-button {
-    background-image: linear-gradient(120deg,  #31DF06 0%,#82F366 100%);
+
+#add-expense-button {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 /*
