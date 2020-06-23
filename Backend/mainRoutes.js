@@ -49,7 +49,7 @@ mainRouter.use('/home', function (err, req, res, next) {
 
 /// ////////////////// Debt Get Routes
 mainRouter.get('/api/get-expenses', function (req, res) {
-  debtManager.getDebts(res)
+  debtManager.getDebts(req, res)
 })
 /// ////////////////// Debt Post Routes
 mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process

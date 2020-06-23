@@ -1,5 +1,5 @@
 -- Create Tables
-DROP TABLE IF EXISTS Debts;
+DROP TABLE IF EXISTS Expenses;
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users (
@@ -11,13 +11,21 @@ CREATE TABLE Users (
     CONSTRAINT userPk PRIMARY KEY(username)
 );
 
-CREATE TABLE Debts (
+CREATE TABLE Expenses (
     debtID int IDENTITY(1,1) PRIMARY KEY,
-    owing varchar(255) NOT NULL,
-    owed varchar(255) NOT NULL,
-    amount money CHECK (amount >= 0) NOT NULL,
     description varchar(255) NOT NULL,
-    CONSTRAINT owingFK FOREIGN KEY(owing) REFERENCES Users(username),
-    CONSTRAINT owedFK FOREIGN KEY(owed) REFERENCES Users(username),
-    CHECK (owing != owed)
+    amount money CHECK (amount >= 0) NOT NULL,
+    username varchar(255) NOT NULL,
+    dateAdded varchar(255) NOT NULL,
+    CONSTRAINT userFK FOREIGN KEY(username) REFERENCES Users(username)
+);
+
+CREATE TABLE Paid (
+    payID int IDENTITY(1,1) PRIMARY KEY,
+    debtID int NOT NULL,
+    description varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    datePayed varchar(255) NOT NULL,
+    CONSTRAINT userFKPaid FOREIGN KEY(username) REFERENCES Users(username),
+    CONSTRAINT debtFK FOREIGN KEY(debtID) REFERENCES Expenses(debtID)
 );
