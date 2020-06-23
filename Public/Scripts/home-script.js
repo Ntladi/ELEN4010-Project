@@ -166,25 +166,37 @@ window.onclick = function (event) {
     filterExpenseBox.style.display = 'none'
   }
   if (event.target === document.querySelector('#show-my-expenses-button')) {
-    filterElements(event.target, 'Show My Posted Expenses', 'Hide My Posted Expenses')
+    filterElements(event.target, 'Show My Posted Expenses', 'Hide My Posted Expenses', 'my-expense')
   }
   if (event.target === document.querySelector('#show-my-pending-debts-button')) {
-    filterElements(event.target, 'Show My Pending Expenses', 'Hide My Pending Expenses')
+    filterElements(event.target, 'Show My Pending Expenses', 'Hide My Pending Expenses', 'pending-expense')
   }
   if (event.target === document.querySelector('#show-my-settled-debts-button')) {
-    filterElements(event.target, 'Show My Settled Expenses', 'Hide My Settled Expenses')
+    filterElements(event.target, 'Show My Settled Expenses', 'Hide My Settled Expenses', 'settled-expense')
   }
   if (event.target === document.querySelector('#show-other-debts-button')) {
-    filterElements(event.target, 'Show Other Expenses', 'Hide Other Expenses')
+    filterElements(event.target, 'Show Other Expenses', 'Hide Other Expenses', 'other-expense')
   }
 }
 
-function filterElements (target, showText, hideText) {
+function filterElements (target, showText, hideText, type) {
   if (target.className === 'modal-filter-button') {
     target.textContent = hideText
     target.classList = 'modal-filter-button-active'
+    processElements(type, true)
   } else if (target.className === 'modal-filter-button-active') {
     target.textContent = showText
     target.classList = 'modal-filter-button'
+    processElements(type, false)
   }
+}
+
+function processElements (type, visibility) {
+  const expenses = document.querySelector('#expense-card-container').getElementsByClassName(type)
+
+  Array.from(expenses).forEach(expense => {
+    if (visibility === true) {
+      expense.style.display = 'block'
+    } else { expense.style.display = 'none' }
+  })
 }
