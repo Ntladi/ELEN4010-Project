@@ -78,12 +78,14 @@ const addExpenseBox = document.querySelector('#add-expense-box')
 addExpenseBox.appendChild(newExpenseForm())
 
 const addExpenseButton = document.querySelector('#add-expense-button')
-const addExpenseCancelBetton = document.querySelector('#add-expense-cancel-button')
+const personalLogButton = document.querySelector('#personal-log-box')
+const householdLogButton = document.querySelector('#household-log-box')
+const addExpenseCancelButton = document.querySelector('#add-expense-cancel-button')
 const allExpenses = document.querySelector('#expense-card-container')
 listExpenses(allExpenses)
 
 window.onclick = function (event) {
-  if (event.target === addExpenseBox || event.target === addExpenseCancelBetton) {
+  if (event.target === addExpenseBox || event.target === addExpenseCancelButton) {
     addExpenseBox.style.display = 'none'
   }
   if (event.target === addExpenseButton) {
