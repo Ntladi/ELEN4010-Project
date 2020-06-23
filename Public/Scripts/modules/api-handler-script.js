@@ -13,7 +13,11 @@ const card = function (expenses, type) {
 
   if (expenses.status === 'mine') {
     cardBox.classList.add('card-box', 'my-expense')
-  } else { cardBox.classList.add('card-box', 'pending-expense') }
+    cardType.classList = 'my-expense-type'
+  } else {
+    cardBox.classList.add('card-box', 'pending-expense')
+    cardType.classList = 'pending-expense-type'
+  }
   cardBox.setAttribute('id', 'expense-box')
   header.classList = 'card-header'
   details.classList = 'card-message-container'
@@ -22,8 +26,8 @@ const card = function (expenses, type) {
 
   header.textContent = expenses.description
   if (expenses.status === 'mine') {
-    cardType.textContent = 'Type: My Expense'
-  } else { cardType.textContent = 'Type: Pending Expense' }
+    cardType.textContent = 'Type: My Posted Expense'
+  } else { cardType.textContent = 'Type: My Pending Expense' }
   user.textContent = `Posted By: ${expenses.username}`
   amount.textContent = `Amount: R${expenses.amount}`
   date.textContent = `Date: ${expenses.dateAdded}`
