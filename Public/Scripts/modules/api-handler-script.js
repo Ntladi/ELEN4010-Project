@@ -28,6 +28,11 @@ const card = function (expenses, type) {
   details.appendChild(cardType)
   details.appendChild(user)
   details.appendChild(amount)
+  if (expenses.status !== 'mine') {
+    const owed = document.createElement('p')
+    owed.textContent = `Owed: R${expenses.owed}`
+    details.appendChild(owed)
+  }
   buttonContainer.appendChild(button)
   details.appendChild(date)
   cardBox.appendChild(header)

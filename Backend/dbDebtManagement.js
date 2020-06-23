@@ -19,8 +19,25 @@ async function getList () {
       console.log(expense)
     })
   } catch (err) {
-
+    console.log(err)
   }
+}
+
+const distributedAmount = async function () {
+  try {
+    const pools = await db.pools
+    const users = await pools.request().query('SELECT username FROM Users')
+    let userLength = users.recordset.length
+    if (userLength > 1) { userLength = userLength - 1 }
+    return userLength
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const calculateAmount = function (amount, users) {
+  const number = parseFloat(amount) / users
+  return number
 }
 
 module.exports.addExpense = async function (details, res) {
@@ -56,11 +73,14 @@ module.exports.getDebts = async function (req, res) {
     await getList()
     const expenses = debtProcess.getList()
     if ('user' in req.session) {
+      const users = await distributedAmount()
+      console.log(users)
       expenses.forEach(expense => {
         if (expense.username === req.session.user.username) {
           expense.status = 'mine'
         } else {
           expense.status = 'yours'
+          expense.owed = calculateAmount(expense.amount, users)
         }
       })
     }
