@@ -4,8 +4,8 @@ const mssql = require('mssql')
 
 const config = {
   server: 'billsplitter13.database.windows.net',
-  database: 'BillSplitter13DB',
-  user: 'BillSplitter13',
+  database: process.env.databaseUsername,
+  user: process.env.databasePassword,
   password: 'ELEN4010Group13',
   port: 1433,
   options: {

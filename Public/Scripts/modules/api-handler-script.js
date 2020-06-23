@@ -8,28 +8,28 @@ const card = function (expenses) {
   const user = document.createElement('p')
   const date = document.createElement('p')
   const buttonContainer = document.createElement('div')
-  const button = document.createElement('button')
+ // const button = document.createElement('button')
 
   cardBox.classList = 'card-box'
   cardBox.setAttribute('id', 'expense-box')
   header.classList = 'card-header'
   details.classList = 'card-message-container'
-  button.classList = 'card-button'
-  buttonContainer.classList = 'card-button-container'
+  //button.classList = 'card-button'
+  //buttonContainer.classList = 'card-button-container'
 
   header.textContent = expenses.description
   amount.textContent = `Amount: R${expenses.amount}`
   user.textContent = `User: ${expenses.user}`
   date.textContent = `Date: ${expenses.date}`
-  button.textContent = 'Settle'
+  //button.textContent = 'Settle'
 
   details.appendChild(amount)
   details.appendChild(user)
   details.appendChild(date)
-  buttonContainer.appendChild(button)
+  //buttonContainer.appendChild(button)
   cardBox.appendChild(header)
   cardBox.appendChild(details)
-  cardBox.appendChild(buttonContainer)
+ // cardBox.appendChild(buttonContainer)
 
   return cardBox
 }
