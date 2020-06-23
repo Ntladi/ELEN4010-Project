@@ -49,10 +49,10 @@ describe('Tests for creating an expense', () => {
       username: 'NMohajane'
     }
     const newExpense = debtProcess.createExpense(expenseFromClient)
-    expect(newExpense.date).toEqual(date.toLocaleDateString())
+    expect(newExpense.dateAdded).toEqual(date.toLocaleDateString())
     expect(newExpense.description).toEqual(expenseFromClient.expenseDescription)
     expect(newExpense.amount).toEqual(expenseFromClient.expenseAmount)
-    expect(newExpense.user).toEqual(expenseFromClient.username)
+    expect(newExpense.username).toEqual(expenseFromClient.username)
   })
   test('A new expense is automatically formatted', () => {
     const expenseFromClient = {

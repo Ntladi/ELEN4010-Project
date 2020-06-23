@@ -1,5 +1,5 @@
 -- Create Tables
-DROP TABLE IF EXISTS Debts;
+DROP TABLE IF EXISTS Expenses;
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users (

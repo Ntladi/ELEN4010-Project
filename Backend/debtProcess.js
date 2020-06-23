@@ -50,8 +50,8 @@ module.exports = {
     const newExpense = {
       description: description,
       amount: amount,
-      user: expense.username,
-      date: date.toLocaleDateString()
+      username: expense.username,
+      dateAdded: date.toLocaleDateString()
     }
     return newExpense
   },

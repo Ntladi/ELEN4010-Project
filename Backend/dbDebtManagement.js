@@ -1,9 +1,31 @@
 'use strict'
 
+const db = require('./dbConnect')
 const debtProcess = require('./debtProcess')
+
+const createExpenseQuery = function (expense) {
+  const command = 'INSERT INTO Expenses (description, amount, username, dateAdded) '
+  const formattedData = `VALUES ('${expense.description}', '${expense.amount}', '${expense.username}', '${expense.dateAdded}');`
+  return command + formattedData
+}
+
+async function getList () {
+  try {
+    const pool = await db.pools
+    const expenses = await pool.request().query('SELECT * FROM Expenses')
+    debtProcess.clearList()
+    expenses.recordset.forEach(expense => {
+      debtProcess.addExpense(expense)
+      console.log(expense)
+    })
+  } catch (err) {
+
+  }
+}
 
 module.exports.addExpense = async function (details, res) {
   try {
+    await getList()
     if (debtProcess.doesExpenseExist(details.expenseDescription)) {
       const message = `The expense '${debtProcess.formatDescription(details.expenseDescription)}' already exists.`
       res.render('error.ejs',
@@ -17,8 +39,9 @@ module.exports.addExpense = async function (details, res) {
         { error: 'Invalid Expense', message: message, tips: tips, link: '/home', button: 'Home' })
       return
     }
-    debtProcess.addExpense(debtProcess.createExpense(details))
-    console.log(debtProcess.getList())
+    const newExpense = debtProcess.createExpense(details)
+    const pool = await db.pools
+    await pool.request().query(createExpenseQuery(newExpense))
     res.redirect('/home')
   } catch (err) {
     console.log(err)
@@ -30,6 +53,7 @@ module.exports.addExpense = async function (details, res) {
 
 module.exports.getDebts = async function (res) {
   try {
+    await getList()
     res.json(debtProcess.getList())
   } catch (err) {
     console.log(err)
