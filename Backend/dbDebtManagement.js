@@ -36,7 +36,7 @@ const distributedAmount = async function () {
 }
 
 const calculateAmount = function (amount, users) {
-  const number = parseFloat(amount)
+  const number = parseFloat(amount) / users
   const fixedNum = number.toFixed(2)
   return fixedNum
 }

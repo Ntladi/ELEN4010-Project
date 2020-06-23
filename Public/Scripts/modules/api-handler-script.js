@@ -26,8 +26,8 @@ const card = function (expenses, type) {
 
   header.textContent = expenses.description
   if (expenses.status === 'mine') {
-    cardType.textContent = 'Type: My Expense'
-  } else { cardType.textContent = 'Type: Pending Expense' }
+    cardType.textContent = 'Type: My Posted Expense'
+  } else { cardType.textContent = 'Type: My Pending Expense' }
   user.textContent = `Posted By: ${expenses.username}`
   amount.textContent = `Amount: R${expenses.amount}`
   date.textContent = `Date: ${expenses.dateAdded}`
