@@ -36,8 +36,9 @@ const distributedAmount = async function () {
 }
 
 const calculateAmount = function (amount, users) {
-  const number = parseFloat(amount) / users
-  return number
+  const number = parseFloat(amount)
+  const fixedNum = number.toFixed(2)
+  return fixedNum
 }
 
 module.exports.addExpense = async function (details, res) {
