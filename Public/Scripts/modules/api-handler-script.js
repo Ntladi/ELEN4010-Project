@@ -76,6 +76,8 @@ async function listExpenses (cardContainer) {
 
 async function settleDebt (expense) {
   try {
+    const userCard = document.querySelector('.my-expense')
+    const username = userCard.querySelector('.user-details').textContent.replace('Posted By: ', '')
     const description = expense.querySelector('.card-header').textContent
     const expenseBox = expense.querySelector('.card-message-container')
     const debtID = expenseBox.querySelector('.debt-id').textContent
@@ -92,8 +94,19 @@ async function settleDebt (expense) {
       body: JSON.stringify(details)
     })
     const debts = await response.json()
+    console.log(username)
     debts.forEach(debt => {
-      console.log(debt)
+      if (debt.debtID === parseInt(debtID) &&
+      debt.description === description && debt.payer === username) {
+        expense.classList = 'card-box settled-expense'
+        const type = expense.querySelector('.pending-expense-type')
+        type.textContent = 'Type: My Settled Expense'
+        type.classList = 'settled-expense-type'
+        const dateSettled = document.createElement('p')
+        dateSettled.textContent = `Settled on: ${debt.datePayed}`
+        expense.querySelector('.card-message-container').appendChild(dateSettled)
+        expense.querySelector('.card-button-container').style.display = 'none'
+      }
     })
   } catch (err) {
     console.log('post failed', err)
