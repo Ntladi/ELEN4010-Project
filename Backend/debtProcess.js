@@ -2,6 +2,7 @@
 
 // Private
 let expenses = []
+let debts = []
 
 const formatDescription = function (description) {
   description = description.toLowerCase()
@@ -68,9 +69,29 @@ module.exports = {
     expenses.push(expense)
   },
 
-  formatDescription: function (description) {
-    description = description.toLowerCase()
-    description = description[0].toUpperCase() + description.slice(1)
-    return description
+  formatDescription: formatDescription,
+
+  doesDebtExist: function (details) {
+    for (let index = 0; index < debts.length; index++) {
+      if (debts[index].debtID === parseInt(details.debtID) &&
+        debts[index].payer === details.payer &&
+        debts[index].paid === details.paid) {
+        return true
+      }
+    }
+    return false
+  },
+
+  clearDebtList: function () {
+    debts = []
+  },
+
+  addDebt: function (debt) {
+    debts.push(debt)
+  },
+
+  getDebts: function () {
+    return debts
   }
+
 }

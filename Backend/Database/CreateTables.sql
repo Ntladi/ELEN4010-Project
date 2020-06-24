@@ -1,4 +1,5 @@
 -- Create Tables
+DROP TABLE IF EXISTS Paid;
 DROP TABLE IF EXISTS Expenses;
 DROP TABLE IF EXISTS Users;
 
@@ -24,8 +25,10 @@ CREATE TABLE Paid (
     payID int IDENTITY(1,1) PRIMARY KEY,
     debtID int NOT NULL,
     description varchar(255) NOT NULL,
-    username varchar(255) NOT NULL,
+    payer varchar(255) NOT NULL,
+    paid varchar(255) NOT NULL,
     datePayed varchar(255) NOT NULL,
-    CONSTRAINT userFKPaid FOREIGN KEY(username) REFERENCES Users(username),
+    CONSTRAINT userFKPayer FOREIGN KEY(payer) REFERENCES Users(username),
+    CONSTRAINT userFKPaid FOREIGN KEY(paid) REFERENCES Users(username),
     CONSTRAINT debtFK FOREIGN KEY(debtID) REFERENCES Expenses(debtID)
 );

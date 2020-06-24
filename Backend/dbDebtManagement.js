@@ -9,14 +9,33 @@ const createExpenseQuery = function (expense) {
   return command + formattedData
 }
 
-async function getList () {
+const settleDebtsQuery = function (debt) {
+  const command = 'INSERT INTO Paid (debtID, description, payer, paid, datePayed) '
+  const formattedData = `VALUES ('${debt.debtID}', '${debt.description}', '${debt.payer}', '${debt.paid}', '${debt.datePayed}');`
+  return command + formattedData
+}
+
+async function getExpenseList () {
   try {
     const pool = await db.pools
     const expenses = await pool.request().query('SELECT * FROM Expenses')
     debtProcess.clearList()
     expenses.recordset.forEach(expense => {
       debtProcess.addExpense(expense)
-      console.log(expense)
+      // console.log(expense)
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function getDebtsList () {
+  try {
+    debtProcess.clearDebtList()
+    const pool = await db.pools
+    const debts = await pool.request().query('SELECT * FROM Paid')
+    debts.recordset.forEach(debt => {
+      debtProcess.addDebt(debt)
     })
   } catch (err) {
     console.log(err)
@@ -43,7 +62,7 @@ const calculateAmount = function (amount, users) {
 
 module.exports.addExpense = async function (details, res) {
   try {
-    await getList()
+    await getExpenseList()
     if (debtProcess.doesExpenseExist(details.expenseDescription)) {
       const message = `The expense '${debtProcess.formatDescription(details.expenseDescription)}' already exists.`
       res.render('error.ejs',
@@ -69,9 +88,9 @@ module.exports.addExpense = async function (details, res) {
   }
 }
 
-module.exports.getDebts = async function (req, res) {
+module.exports.getExpenses = async function (req, res) {
   try {
-    await getList()
+    await getExpenseList()
     const expenses = debtProcess.getList()
     if ('user' in req.session) {
       const users = await distributedAmount()
@@ -92,5 +111,31 @@ module.exports.getDebts = async function (req, res) {
     const message = 'Please Try Again'
     res.render('error.ejs',
       { error: 'Error Accessing Database', message: message, tips: [], link: '/home', button: 'home' })
+  }
+}
+
+module.exports.settleDebt = async function (debt, res) {
+  try {
+    await getDebtsList()
+    console.log(debtProcess.getDebts())
+
+    if (!debtProcess.doesDebtExist(debt)) {
+      const pool = await db.pools
+      await pool.request().query(settleDebtsQuery(debt))
+      console.log('Valid Debt')
+    }
+    await getDebtsList()
+    res.json(debtProcess.getDebts())
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+module.exports.getDebts = async function (req, res) {
+  try {
+    await getExpenseList()
+    res.json(debtProcess.getDebts())
+  } catch (err) {
+    console.log(err)
   }
 }
