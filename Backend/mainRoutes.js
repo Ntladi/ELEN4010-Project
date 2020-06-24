@@ -49,7 +49,7 @@ mainRouter.use('/home', function (err, req, res, next) {
 
 /// ////////////////// Debt Get Routes
 mainRouter.get('/api/get-expenses', function (req, res) {
-  debtManager.getDebts(req, res)
+  debtManager.getExpenses(req, res)
 })
 /// ////////////////// Debt Post Routes
 mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
@@ -61,6 +61,20 @@ mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will h
   }
   console.log(details)
   debtManager.addExpense(details, res)
+})
+
+mainRouter.post('/api/settle-debt', checkSignIn, function (req, res) {
+  const date = new Date()
+  const username = req.session.user.username
+  const details = {
+    debtID: req.body.debtID,
+    description: req.body.description,
+    payer: username,
+    paid: req.body.paying,
+    datePayed: date.toLocaleString()
+  }
+  console.log(details)
+  debtManager.settleDebt(details, res)
 })
 
 /// ////////////////// Debt Checks

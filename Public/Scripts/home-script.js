@@ -1,6 +1,6 @@
 'use strict'
 
-import { listExpenses } from './modules/api-handler-script.js'
+import { listExpenses, settleDebt } from './modules/api-handler-script.js'
 
 const newInputField = function (id, placeholder, labelText, required) {
   const field = document.createElement('input')
@@ -176,6 +176,9 @@ window.onclick = function (event) {
   }
   if (event.target === document.querySelector('#show-other-debts-button')) {
     filterElements(event.target, 'Show Other Expenses', 'Hide Other Expenses', 'other-expense')
+  }
+  if (Array.from(document.querySelectorAll('.settle-button')).includes(event.target)) {
+    settleDebt(event.target.parentNode.parentNode)
   }
 }
 
