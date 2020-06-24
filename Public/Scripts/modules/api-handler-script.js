@@ -64,9 +64,31 @@ const card = function (expenses, type) {
 async function listExpenses (cardContainer) {
   try {
     const response = await window.fetch('/api/get-expenses')
+    const responsed = await window.fetch('/api/get-debts')
     const expenses = await response.json()
+    const debts = await responsed.json()
+    console.log(debts)
+    let username = ''
     expenses.forEach((expense) => {
       const newCard = card(expense, 'Houesehold Expense')
+      if (newCard.classList.contains('my-expense')) {
+        username = newCard.querySelector('.user-details').textContent.replace('Posted By: ', '')
+      }
+      const debtID = newCard.querySelector('.debt-id').textContent
+      const description = newCard.querySelector('.card-header').textContent
+      debts.forEach(debt => {
+        if (debt.debtID === parseInt(debtID) &&
+        debt.description === description && debt.payer === username) {
+          newCard.classList = 'card-box settled-expense'
+          const type = newCard.querySelector('.pending-expense-type')
+          type.textContent = 'Type: My Settled Expense'
+          type.classList = 'settled-expense-type'
+          const dateSettled = document.createElement('p')
+          dateSettled.textContent = `Settled on: ${debt.datePayed}`
+          newCard.querySelector('.card-message-container').appendChild(dateSettled)
+          newCard.querySelector('.card-button-container').style.display = 'none'
+        }
+      })
       cardContainer.appendChild(newCard)
     })
   } catch (err) {

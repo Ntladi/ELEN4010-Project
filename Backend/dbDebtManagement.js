@@ -131,10 +131,11 @@ module.exports.settleDebt = async function (debt, res) {
   }
 }
 
-module.exports.getDebts = async function (details, res) {
+module.exports.getDebts = async function (req, res) {
   try {
-
+    await getExpenseList()
+    res.json(debtProcess.getDebts())
   } catch (err) {
-
+    console.log(err)
   }
 }

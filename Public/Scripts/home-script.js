@@ -122,6 +122,7 @@ const newFilterForm = function () {
   otherExpensesButton.classList = 'modal-filter-button-active'
   otherExpensesButton.setAttribute('type', 'button')
   otherExpensesButton.setAttribute('id', 'show-other-debts-button')
+  otherExpensesButton.style.display = 'none'
 
   // append buttons to their container
   buttons.appendChild(applyButton)

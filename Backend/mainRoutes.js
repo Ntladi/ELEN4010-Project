@@ -51,6 +51,9 @@ mainRouter.use('/home', function (err, req, res, next) {
 mainRouter.get('/api/get-expenses', function (req, res) {
   debtManager.getExpenses(req, res)
 })
+mainRouter.get('/api/get-debts', function (req, res) {
+  debtManager.getDebts(req, res)
+})
 /// ////////////////// Debt Post Routes
 mainRouter.post('/api/add-expense', checkSignIn, function (req, res) { // will handle the user creation process
   const username = req.session.user.username
