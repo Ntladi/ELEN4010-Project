@@ -1,23 +1,8 @@
 'use strict'
 
 // Private
-let expenses = [
-  {
-    description: 'Rent',
-    amount: '3000.60',
-    user: 'Chiloanel'
-  },
-  {
-    description: 'Electricity',
-    amount: '2060.50',
-    user: 'GeriKirui'
-  },
-  {
-    description: 'Water',
-    amount: '3267.22',
-    user: 'PendapalaS'
-  }
-]
+let expenses = []
+let debts = []
 
 const formatDescription = function (description) {
   description = description.toLowerCase()
@@ -62,10 +47,12 @@ module.exports = {
   createExpense: function (expense) {
     const description = formatDescription(expense.expenseDescription)
     const amount = formatAmount(expense.expenseAmount)
+    const date = new Date()
     const newExpense = {
       description: description,
       amount: amount,
-      user: expense.username
+      username: expense.username,
+      dateAdded: date.toLocaleString()
     }
     return newExpense
   },
@@ -82,9 +69,29 @@ module.exports = {
     expenses.push(expense)
   },
 
-  formatDescription: function (description) {
-    description = description.toLowerCase()
-    description = description[0].toUpperCase() + description.slice(1)
-    return description
+  formatDescription: formatDescription,
+
+  doesDebtExist: function (details) {
+    for (let index = 0; index < debts.length; index++) {
+      if (debts[index].debtID === parseInt(details.debtID) &&
+        debts[index].payer === details.payer &&
+        debts[index].paid === details.paid) {
+        return true
+      }
+    }
+    return false
+  },
+
+  clearDebtList: function () {
+    debts = []
+  },
+
+  addDebt: function (debt) {
+    debts.push(debt)
+  },
+
+  getDebts: function () {
+    return debts
   }
+
 }

@@ -50,7 +50,7 @@ describe('Tests for creating an expense', () => {
     const newExpense = debtProcess.createExpense(expenseFromClient)
     expect(newExpense.description).toEqual(expenseFromClient.expenseDescription)
     expect(newExpense.amount).toEqual(expenseFromClient.expenseAmount)
-    expect(newExpense.user).toEqual(expenseFromClient.username)
+    expect(newExpense.username).toEqual(expenseFromClient.username)
   })
   test('A new expense is automatically formatted', () => {
     const expenseFromClient = {
@@ -176,5 +176,98 @@ describe('Tests for returning an expense', () => {
     const newExpense = debtProcess.createExpense(expense1)
     debtProcess.addExpense(newExpense)
     expect(debtProcess.getExpense('rent')).toEqual(newExpense)
+  })
+})
+
+test('A blank list of debts is returned', () => {
+  debtProcess.clearDebtList()
+  expect(debtProcess.getDebts()).toEqual([])
+})
+
+describe('Tests for adding a debt', () => {
+  test('A debt can be added to the list', () => {
+    debtProcess.clearDebtList()
+    const date = new Date()
+    const debt = {
+      debtID: '1',
+      description: 'Food',
+      payer: 'GeriKirui',
+      paid: 'ChiloaneL',
+      datePayed: date.toLocaleString()
+    }
+    debtProcess.addDebt(debt)
+    const debts = debtProcess.getDebts()
+    expect(debts[0].debtID).toEqual(debt.debtID)
+    expect(debts[0].description).toEqual(debt.description)
+    expect(debts[0].payer).toEqual(debt.payer)
+    expect(debts[0].paid).toEqual(debt.paid)
+    expect(debts[0].datePayed).toEqual(debt.datePayed)
+    expect(debts[0].datePayed).toEqual(date.toLocaleString())
+  })
+})
+
+describe('Tests for comparing debts', () => {
+  test('Debts where all fields have different values not the same', () => {
+    debtProcess.clearDebtList()
+    const date = new Date()
+    const debt1 = {
+      debtID: 1,
+      description: 'Food',
+      payer: 'GeriKirui',
+      paid: 'ChiloaneL',
+      datePayed: date.toLocaleString()
+    }
+    debtProcess.addDebt(debt1)
+    const date2 = new Date()
+    const debt2 = {
+      debtID: '2',
+      description: 'Food',
+      payer: 'ChiloaneL',
+      paid: 'GeriKirui',
+      datePayed: date2.toLocaleString()
+    }
+    expect(debtProcess.doesDebtExist(debt2)).not.toEqual(true)
+  })
+  test('Debts where debtID fields are the same, but the payer fields arent are not the same', () => {
+    debtProcess.clearDebtList()
+    const date = new Date()
+    const debt1 = {
+      debtID: 1,
+      description: 'Food',
+      payer: 'GeriKirui',
+      paid: 'ChiloaneL',
+      datePayed: date.toLocaleString()
+    }
+    debtProcess.addDebt(debt1)
+    const date2 = new Date()
+    const debt2 = {
+      debtID: '1',
+      description: 'Food',
+      payer: 'Ntladi',
+      paid: 'ChiloaneL',
+      datePayed: date2.toLocaleString()
+    }
+    expect(debtProcess.doesDebtExist(debt2)).not.toEqual(true)
+  })
+  test('Debts where debtID fields and payer fields are equal are the same', () => {
+    debtProcess.clearDebtList()
+    const date = new Date()
+    const debt1 = {
+      debtID: 1,
+      description: 'Food',
+      payer: 'GeriKirui',
+      paid: 'ChiloaneL',
+      datePayed: date.toLocaleString()
+    }
+    debtProcess.addDebt(debt1)
+    const date2 = new Date()
+    const debt2 = {
+      debtID: '1',
+      description: 'Food',
+      payer: 'GeriKirui',
+      paid: 'ChiloaneL',
+      datePayed: date2.toLocaleString()
+    }
+    expect(debtProcess.doesDebtExist(debt2)).toEqual(true)
   })
 })
