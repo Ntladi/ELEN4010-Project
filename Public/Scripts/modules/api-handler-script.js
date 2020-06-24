@@ -86,10 +86,14 @@ async function settleDebt (expense) {
       paying: paying.replace('Posted By: ', '')
     }
     console.log(details)
-    await window.fetch('/api/settle-debt', {
+    const response = await window.fetch('/api/settle-debt', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(details)
+    })
+    const debts = await response.json()
+    debts.forEach(debt => {
+      console.log(debt)
     })
   } catch (err) {
     console.log('post failed', err)

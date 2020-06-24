@@ -211,7 +211,7 @@ describe('Tests for comparing debts', () => {
     debtProcess.clearDebtList()
     const date = new Date()
     const debt1 = {
-      debtID: '1',
+      debtID: 1,
       description: 'Food',
       payer: 'GeriKirui',
       paid: 'ChiloaneL',
@@ -232,7 +232,7 @@ describe('Tests for comparing debts', () => {
     debtProcess.clearDebtList()
     const date = new Date()
     const debt1 = {
-      debtID: '1',
+      debtID: 1,
       description: 'Food',
       payer: 'GeriKirui',
       paid: 'ChiloaneL',
@@ -253,7 +253,7 @@ describe('Tests for comparing debts', () => {
     debtProcess.clearDebtList()
     const date = new Date()
     const debt1 = {
-      debtID: '1',
+      debtID: 1,
       description: 'Food',
       payer: 'GeriKirui',
       paid: 'ChiloaneL',

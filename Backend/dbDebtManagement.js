@@ -31,12 +31,11 @@ async function getExpenseList () {
 
 async function getDebtsList () {
   try {
+    debtProcess.clearDebtList()
     const pool = await db.pools
     const debts = await pool.request().query('SELECT * FROM Paid')
-    debtProcess.clearDebtList()
     debts.recordset.forEach(debt => {
       debtProcess.addDebt(debt)
-      console.log(debt)
     })
   } catch (err) {
     console.log(err)
@@ -118,12 +117,15 @@ module.exports.getExpenses = async function (req, res) {
 module.exports.settleDebt = async function (debt, res) {
   try {
     await getDebtsList()
+    console.log(debtProcess.getDebts())
+
     if (!debtProcess.doesDebtExist(debt)) {
       const pool = await db.pools
       await pool.request().query(settleDebtsQuery(debt))
       console.log('Valid Debt')
     }
-    res.redirect('/home')
+    await getDebtsList()
+    res.json(debtProcess.getDebts())
   } catch (err) {
     console.log(err)
   }

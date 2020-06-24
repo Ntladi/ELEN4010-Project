@@ -73,7 +73,7 @@ module.exports = {
 
   doesDebtExist: function (details) {
     for (let index = 0; index < debts.length; index++) {
-      if (debts[index].debtID === details.debtID &&
+      if (debts[index].debtID === parseInt(details.debtID) &&
         debts[index].payer === details.payer &&
         debts[index].paid === details.paid) {
         return true
@@ -91,7 +91,7 @@ module.exports = {
   },
 
   getDebts: function () {
-    return [...debts]
+    return debts
   }
 
 }
